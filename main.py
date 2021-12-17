@@ -1,5 +1,7 @@
 from statistics import mean
 class Student:
+    instances_list = []
+    count = 0
     def __init__(self, name, surname, gender):
         self.name = name
         self.surname = surname
@@ -7,7 +9,10 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-        self.li = []
+        Student.count += 1
+        Student.instances_list.append(self)
+
+
 
     def add_courses(self, course_name):
         self.finished_courses.append(course_name)
@@ -27,6 +32,17 @@ class Student:
             av_g.append(mean(value))
         return mean(av_g)
 
+    def average_rating(instances_list, course):
+        list_all = []
+        for x in instances_list:
+            for subject, v in x.grades.items():
+                if course == subject:
+                    rating = sum(v) / len(v)
+                    list_all += [rating]
+            rating_all = sum(list_all) / len(list_all)
+            return print(rating_all)
+    average_rating(instances_list, 'Python')
+
     def __str__(self):
         res = f'Имя: {self.name} \n' \
               f'Фамилия: {self.surname}\n'\
@@ -36,6 +52,20 @@ class Student:
 
         return res
 
+
+best_student = Student('Ruoy', 'Eman', 'your_gender')
+
+best_student.courses_in_progress += ['Python']
+best_student.courses_in_progress += ['Git']
+best_student.finished_courses += ['Введение в программирование']
+student_1 = Student('Eliot', 'Mann', 'your_gender')
+
+student_1.courses_in_progress += ['Python']
+student_1.courses_in_progress += ['Git']
+student_2 = Student('Alex', 'Moor', 'your_gender')
+
+student_2.courses_in_progress += ['Python']
+student_2.courses_in_progress += ['Git']
 
 
 
@@ -80,17 +110,16 @@ class Reviewer(Mentor):
               f'Фамилия: {self.surname}'
         return res
 
-
-best_student = Student('Ruoy', 'Eman', 'your_gender')
-best_student.courses_in_progress += ['Python']
-best_student.courses_in_progress += ['Git']
-best_student.finished_courses += ['Введение в программирование']
-student_1 = Student('Eliot', 'Mann', 'your_gender')
-student_1.courses_in_progress += ['Python']
-student_1.courses_in_progress += ['Git']
-student_2 = Student('Alex', 'Moor', 'your_gender')
-student_2.courses_in_progress += ['Python']
-student_2.courses_in_progress += ['Git']
+# best_student = Student('Ruoy', 'Eman', 'your_gender')
+# best_student.courses_in_progress += ['Python']
+# best_student.courses_in_progress += ['Git']
+# best_student.finished_courses += ['Введение в программирование']
+# student_1 = Student('Eliot', 'Mann', 'your_gender')
+# student_1.courses_in_progress += ['Python']
+# student_1.courses_in_progress += ['Git']
+# student_2 = Student('Alex', 'Moor', 'your_gender')
+# student_2.courses_in_progress += ['Python']
+# student_2.courses_in_progress += ['Git']
 
 cool_Reviewer = Reviewer('Some', 'Buddy')
 cool_Reviewer.courses_attached += ['Python']
@@ -134,7 +163,7 @@ student_2.rate_le(lecturer_2, 'Git', 3)
 # print(Reviewer_2)
 # print('Студенты')
 # print()
-print(best_student)
-print(student_1)
-print(student_2)
+# print(best_student)
+# print(student_1)
+# print(student_2)
 
