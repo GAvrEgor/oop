@@ -1,6 +1,7 @@
 from statistics import mean
+instances_list = []
+instances_list_l = []
 class Student:
-    instances_list = []
     count = 0
     def __init__(self, name, surname, gender):
         self.name = name
@@ -9,10 +10,6 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-        Student.count += 1
-        Student.instances_list.append(self)
-
-
 
     def add_courses(self, course_name):
         self.finished_courses.append(course_name)
@@ -32,16 +29,6 @@ class Student:
             av_g.append(mean(value))
         return mean(av_g)
 
-    def average_rating(instances_list, course):
-        list_all = []
-        for x in instances_list:
-            for subject, v in x.grades.items():
-                if course == subject:
-                    rating = sum(v) / len(v)
-                    list_all += [rating]
-            rating_all = sum(list_all) / len(list_all)
-            return print(rating_all)
-    average_rating(instances_list, 'Python')
 
     def __str__(self):
         res = f'Имя: {self.name} \n' \
@@ -52,22 +39,19 @@ class Student:
 
         return res
 
-
 best_student = Student('Ruoy', 'Eman', 'your_gender')
-
+instances_list.append(best_student)
 best_student.courses_in_progress += ['Python']
 best_student.courses_in_progress += ['Git']
 best_student.finished_courses += ['Введение в программирование']
 student_1 = Student('Eliot', 'Mann', 'your_gender')
-
+instances_list.append(student_1)
 student_1.courses_in_progress += ['Python']
 student_1.courses_in_progress += ['Git']
 student_2 = Student('Alex', 'Moor', 'your_gender')
-
+instances_list.append(student_2)
 student_2.courses_in_progress += ['Python']
 student_2.courses_in_progress += ['Git']
-
-
 
 class Mentor:
     def __init__(self, name, surname):
@@ -87,13 +71,11 @@ class Lecturer(Mentor):
             av_g.append(mean(value))
         return mean(av_g)
 
-
     def __str__(self):
         res = f'Имя: {self.name} \n' \
               f'Фамилия: {self.surname}\n'\
               f'Средняя оценка за лекции: {self.avg()}'
         return res
-
 
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
@@ -136,12 +118,15 @@ Reviewer_2.rate_hw(student_2, 'Python', 5)
 Reviewer_2.rate_hw(student_2, 'Git', 9)
 
 cool_lecturer = Lecturer('Some', 'Buddy')
+instances_list_l.append(cool_lecturer)
 cool_lecturer.courses_attached += ['Python']
 cool_lecturer.courses_attached += ['Git']
 lecturer_1 = Lecturer('Олег', 'Бубнов')
+instances_list_l.append(lecturer_1)
 lecturer_1.courses_attached += ['Python']
 lecturer_1.courses_attached += ['Git']
 lecturer_2 = Lecturer('Глеб', 'Афанасьев')
+instances_list_l.append(lecturer_2)
 lecturer_2.courses_attached += ['Python']
 lecturer_2.courses_attached += ['Git']
 
@@ -167,3 +152,24 @@ student_2.rate_le(lecturer_2, 'Git', 3)
 # print(student_1)
 # print(student_2)
 
+def average_rating(instances_list, course):
+    list_all = []
+    for x in instances_list:
+        for subject, v in x.grades.items():
+            if course == subject:
+                rating = sum(v) / len(v)
+                list_all += [rating]
+        rating_all = sum(list_all) / len(list_all)
+    return print(rating_all)
+average_rating(instances_list, 'Python')
+
+def average_rating_lecturer(instances_list_l, course):
+    list = []
+    for x in instances_list_l:
+        for subject, v in x.le_grade.items():
+            if course == subject:
+                rating = sum(v)/ len(v)
+                list += [rating]
+        rating_all_le = sum(list) / len(list)
+    return print(rating_all_le)
+average_rating_lecturer(instances_list_l, 'Python')
