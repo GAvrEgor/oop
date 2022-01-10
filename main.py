@@ -113,7 +113,9 @@ Reviewer_2.courses_attached += ['Python']
 Reviewer_2.courses_attached += ['Git']
 
 cool_Reviewer.rate_hw(best_student, 'Python', 10)
+cool_Reviewer.rate_hw(best_student, 'Git', 4)
 Reviewer_1.rate_hw(student_1, 'Python', 2)
+Reviewer_1.rate_hw(student_1, 'Git', 3)
 Reviewer_2.rate_hw(student_2, 'Python', 5)
 Reviewer_2.rate_hw(student_2, 'Git', 9)
 
@@ -159,9 +161,9 @@ def average_rating(instances_list, course):
             if course == subject:
                 rating = sum(v) / len(v)
                 list_all += [rating]
-        rating_all = sum(list_all) / len(list_all)
+    rating_all = sum(list_all) / len(list_all)
     return print(rating_all)
-average_rating(instances_list, 'Python')
+average_rating(instances_list, 'Git')
 
 def average_rating_lecturer(instances_list_l, course):
     list = []
@@ -170,6 +172,6 @@ def average_rating_lecturer(instances_list_l, course):
             if course == subject:
                 rating = sum(v)/ len(v)
                 list += [rating]
-        rating_all_le = sum(list) / len(list)
+    rating_all_le = sum(list) / len(list)
     return print(rating_all_le)
-average_rating_lecturer(instances_list_l, 'Python')
+average_rating_lecturer(instances_list_l, 'Git')
